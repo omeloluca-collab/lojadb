@@ -1,0 +1,33 @@
+// 1. Criar/usar o banco de dados
+use loja
+
+// 2. Criar a coleção produtos
+db.createCollection("produtos")
+
+// 3. Inserir documentos
+db.produtos.insertMany([
+  { nome: "Notebook", preco: 3500, categoria: "Eletrônicos", estoque: 10 },
+  { nome: "Mouse", preco: 80, categoria: "Acessórios", estoque: 50 },
+  { nome: "Teclado", preco: 150, categoria: "Acessórios", estoque: 30 },
+  { nome: "Monitor", preco: 900, categoria: "Eletrônicos", estoque: 15 }
+])
+
+// 4. Operações de find
+db.produtos.find()
+db.produtos.find({ preco: { $gt: 100 } })
+db.produtos.find({ nome: "Mouse" })
+
+// 5. Operação de update
+db.produtos.updateOne(
+  { nome: "Mouse" },
+  { $set: { preco: 90 } }
+)
+
+// 6. Verificar atualização
+db.produtos.find({ nome: "Mouse" })
+
+// 7. Operação de delete
+db.produtos.deleteOne({ nome: "Teclado" })
+
+// 8. Verificar exclusão
+db.produtos.find()
